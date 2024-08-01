@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import { useForm } from 'react-hook-form';
 import styles from './Login.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAuth, selectIsAuth } from '../../redux/slices/auth';
+import { fetchLogin, selectIsAuth } from '../../redux/slices/auth';
 import { Navigate } from 'react-router-dom';
 
 export const Login = () => {
@@ -25,10 +25,10 @@ export const Login = () => {
   });
 
   const onSubmit = async (values) => {
-    const data = await dispatch(fetchAuth(values));
+    const data = await dispatch(fetchLogin(values));
 
-    if (!data.payload){
-      return alert('Не удалось авторизоваться!')
+    if (!data.payload) {
+      return alert('Не удалось авторизоваться!');
     }
 
     if ('token' in data.payload) {
@@ -64,7 +64,13 @@ export const Login = () => {
           {...register('password', { required: 'Укажите пароль' })}
           fullWidth
         />
-        <Button disabled={!isValid} type='submit' size='large' variant='contained' fullWidth>
+        <Button
+          disabled={!isValid}
+          type='submit'
+          size='large'
+          variant='contained'
+          fullWidth
+        >
           Войти
         </Button>
       </form>
