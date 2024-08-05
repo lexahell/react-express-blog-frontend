@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import React from 'react';
 import { fetchAuthMe } from './redux/slices/auth';
+import { PostsWithTag } from './pages/PostsWithTag';
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function App() {
           <Route path='/add-post' element={<AddPost />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Registration />} />
+          <Route path='/tags/:tag' element={<PostsWithTag />}></Route>
         </Routes>
       </Container>
     </>
